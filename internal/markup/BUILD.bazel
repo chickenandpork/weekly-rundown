@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "markup_lib",
+    srcs = ["markup.go"],
+    importpath = "github.com/chickenandpork/weekly-rundown/internal/markup",
+    visibility = ["//visibility:public"],
+    deps = [],
+)
+
+go_test(
+    name = "markup_test",
+    size = "small",
+    srcs = ["markup_test.go"],
+    deps = [":markup_lib"],
+)

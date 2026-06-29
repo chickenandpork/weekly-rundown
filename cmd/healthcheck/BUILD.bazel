@@ -1,0 +1,9 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_test")
+
+# Healthcheck binary (standalone TCP health check)
+go_binary(
+    name = "healthcheck",
+    srcs = ["healthcheck/main.go"],
+    importpath = "github.com/chickenandpork/weekly-rundown/cmd/healthcheck",
+    pure = "on",
+)
