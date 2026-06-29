@@ -1,0 +1,26 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "handlers_lib",
+    srcs = [
+        "handlers.go",
+        "formatting.go",
+    ],
+    importpath = "github.com/chickenandpork/weekly-rundown/internal/handlers",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":markup_lib",
+        ":db_lib",
+    ],
+)
+
+go_test(
+    name = "handlers_test",
+    size = "small",
+    srcs = ["handlers_test.go"],
+    deps = [
+        ":handlers_lib",
+        ":db_lib",
+        ":markup_lib",
+    ],
+)
