@@ -1,0 +1,22 @@
+services:
+  weekly-rundown:
+    build: .
+    container_name: weekly-rundown
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - SLACK_BOT_TOKEN=xoxb-your-bot-token-here
+      - DB_PATH=/data/weekly-rundown.db
+    volumes:
+      - wr-data:/data
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+volumes:
+  wr-data:
