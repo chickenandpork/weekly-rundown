@@ -1,0 +1,18 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "db_lib",
+    srcs = ["db.go"],
+    importpath = "github.com/chickenandpork/weekly-rundown/internal/db",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@org_modernc_sqlite//file:import",
+    ],
+)
+
+go_test(
+    name = "db_test",
+    size = "small",
+    srcs = ["db_test.go"],
+    deps = [":db_lib"],
+)

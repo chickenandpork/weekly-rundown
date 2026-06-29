@@ -1,12 +1,15 @@
 services:
   weekly-rundown:
-    build: .
+    build:
+      target: bazel-base
+      dockerfile: Dockerfile
+    image: weekly-rundown:latest
     container_name: weekly-rundown
     ports:
       - "8080:8080"
     environment:
       - PORT=8080
-      - SLACK_BOT_TOKEN=xoxb-your-bot-token-here
+      - SLACK_BOT_TOKEN=***
       - DB_PATH=/data/weekly-rundown.db
     volumes:
       - wr-data:/data
